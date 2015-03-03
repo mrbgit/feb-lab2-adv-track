@@ -184,13 +184,17 @@ function Romulan(){
 
 Klingon.prototype = new SentientBeing;
 Human.prototype = new SentientBeing;
-Romulan = new SentientBeing;
+Romulan.prototype = new SentientBeing;
 
 assert((new Human()).sayHello(new Klingon()) === "nuqneH", "the klingon should hear nuqneH");
 // TODO: write five more assertions, to complete all the possible
 // greetings between the three types of sentient beings you created above.
 
-assert((new Human()).sayHello(new Klingon()) === "nuqneH", "the klingon should hear nuqneH");
+assert((new Klingon()).sayHello(new Human()) === "hello", "the human should hear hello from the Klingon");
+assert((new Human()).sayHello(new Romulan()) === "Jolan\"tru", "the romulan should hear Jolan\"tru from the Human");
+assert((new Romulan()).sayHello(new Human()) === "hello", "the human should hear nuqneH from the romulan");
+assert((new Romulan()).sayHello(new Klingon()) === "nuqneH", "the klingon should hear nuqneH from the romulan");
+assert((new Klingon()).sayHello(new Romulan()) === "Jolan\"tru", "the romulan should hear Jolan\"tru from the klingon");
 
 //*********************************************************
 // PROBLEM 3: Sorting. 20 points.
