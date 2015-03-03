@@ -201,21 +201,49 @@ assert((new Klingon()).sayHello(new Romulan()) === "Jolan\"tru", "the romulan sh
 //
 // Implement the following functions. Write at least 2
 // assertions for each one
-//*********************************************************
+//*********6************************************************
+
+var arrayOfPets = ['cat', 'dog', 'goldfish', 'python', 'gerbil', 'horse', 'tyrannosaurus rex'];
+console.log (arrayOfPets);
+console.log('the last letter of array index 0 is ' + arrayOfPets[0].slice(-1));
+console.log('the last letter of array index 1 is ' + arrayOfPets[1].slice(-1));
 function lastLetterSort(stringArray) {
-  function byLastLetter(array) {
-    //TODO: implement me. sort the strings in alphabetical
-    // order using their last letter
-    // read this: http://www.w3schools.com/jsref/jsref_sort.asp
+  for (var i = 0; i < stringArray.length; i++) {
+    // lastLetterOne = stringArray[i].slice(-1);
+    // lastLetterTwo = stringArray[i + 1].slice(-1);
+    // console.log(lastLetterTwo);
+    if (stringArray[i].slice(-1) > stringArray[i + 1].slice(-1)) {
+      console.log('this i + 1 slice is ' + stringArray[i + 1].slice(-1))
+      return 1;
+    }
+    if (stringArray[i].slice(-1) < stringArray[i + 1].slice(-1)) {
+      return -1;
+    } else {
+      return 0;
+    }
   }
-  stringArray.sort(byLastLetter);
+  // function byLastLetter(array) {
+  //   //TODO: implement me. sort the strings in alphabetical
+  //   // order using their last letter
+  //   // read this: http://www.w3schools.com/jsref/jsref_sort.asp
+
+
+  // }
 }
+
+arrayOfPets.sort(lastLetterSort);
+
+console.log('when the pet array has been sorted it is ' + arrayOfPets);
 
 function sumArray(numberArray) {
   var sum = 0;
   // TODO: implement me using forEach
   return sum;
 }
+
+// sumArray(arrayOfNumbers);
+
+
 
 function sumSort(arrayOfArrays) {
   arrayOfArrays.sort(function(item) {
