@@ -203,55 +203,106 @@ assert((new Klingon()).sayHello(new Romulan()) === "Jolan\"tru", "the romulan sh
 // assertions for each one
 //*********6************************************************
 
-var arrayOfPets = ['cat', 'dog', 'goldfish', 'python', 'gerbil', 'horse', 'tyrannosaurus rex'];
+var arrayOfPets = ['cat', 'dog', 'goldfish', 'python', 'gerbil', 'horse', 'tyrannosaurus rex', 'crocodile', 'monkey'];
+var arrayOfNumbers1 = [58,68,26,21,24,78,91,85,27,34,52,41,90,82,76,31,2,11,98,61];
+var arrayOfNumbers2 = [85,28,19,44,18,73,99,42,30,33,74,97,43,40,57,42,75,85,36,28];
+var arrayOfNumbers3 = [11,28,46,38,49,72,30,92,92,7,2,95,68,66,27,74,75,13,13,62];
+var arrayOfNumbers4 = [87,61,53,83,8,7,86,65,92,81,78,49,61,38,57,72,87,100,20,80];
+var arrayOfNumbers5 = [86,54,17,74,14,71,56,50,56,87,55,53,6,72,55,73,57,27,93,22];
+
+var arrayOfNumbers1 = [1,2];
+var arrayOfNumbers2 = [6,7];
+var arrayOfNumbers3 = [4,5];
+var arrayOfNumbers4 = [3,4];
+var arrayOfNumbers5 = [2,3];
+
+var arrayOfNumberArrays = [arrayOfNumbers1, arrayOfNumbers2, arrayOfNumbers3, arrayOfNumbers4, arrayOfNumbers5];
+
 console.log (arrayOfPets);
-console.log('the last letter of array index 0 is ' + arrayOfPets[0].slice(-1));
-console.log('the last letter of array index 1 is ' + arrayOfPets[1].slice(-1));
-function lastLetterSort(stringArray) {
+// console.log('the last letter of array index 0 is ' + arrayOfPets[0].slice(-1));
+// console.log('the last letter of array index 1 is ' + arrayOfPets[1].slice(-1));
+
+// function lastLetterSort(stringArray) {
+//   if (stringArray.slice(-1) > stringArray.slice(-2)) {
+//     console.log("this is -1 slicer " + stringArray.slice(-1));
+//     return 1;
+//   } else if (stringArray.slice(-1) < stringArray.slice(-2)) {
+//     return -1;
+//   } else {
+//     return 0;
+//   }
+// }
+
+// function lastLetterSort(stringArray) {
+//     if (stringArray.slice(-1) > stringArray.slice(-2)) {
+//       console.log('this -1 slice is ' + stringArray.slice(-1))
+//       return 1;
+//     } else if (stringArray.slice(-1) < stringArray.slice(-2)) {
+//       return -1;
+//     } else {
+//       return 0;
+//     }
+// }
+
+// function lastLetterSort(stringArray) {
+//   for (var i = 0; i < stringArray.length; i++) {
+//     stringArray[i].split('').reverse('').join('');
+//     console.log(stringArray[i]);
+//   }
+//   return stringArray;
+// }
+
+function sortByLastLetter(stringArray) {
+  var tempArray = [];
   for (var i = 0; i < stringArray.length; i++) {
-    // lastLetterOne = stringArray[i].slice(-1);
-    // lastLetterTwo = stringArray[i + 1].slice(-1);
-    // console.log(lastLetterTwo);
-    if (stringArray[i].slice(-1) > stringArray[i + 1].slice(-1)) {
-      console.log('this i + 1 slice is ' + stringArray[i + 1].slice(-1))
-      return 1;
+      tempArray.push(stringArray[i].split('').reverse('').join(''));
     }
-    if (stringArray[i].slice(-1) < stringArray[i + 1].slice(-1)) {
-      return -1;
-    } else {
-      return 0;
+  console.log("this is the tempArray after reverse, but before sort " + tempArray);
+  tempArray.sort();
+  console.log('this is the tempArray reversed and sorted ' + tempArray);
+  stringArray = [];
+  for (var i = 0; i < tempArray.length; i++) {
+      stringArray.push(tempArray[i].split('').reverse('').join(''));
     }
-  }
-  // function byLastLetter(array) {
-  //   //TODO: implement me. sort the strings in alphabetical
-  //   // order using their last letter
-  //   // read this: http://www.w3schools.com/jsref/jsref_sort.asp
-
-
-  // }
+  console.log('this is the sorted stringArray ' + stringArray);
+  return stringArray;
 }
 
-arrayOfPets.sort(lastLetterSort);
+function lastLetterSort(stringArray, sortByLastLetter){
+  return stringArray;
+}
+
+lastLetterSort(arrayOfPets);
 
 console.log('when the pet array has been sorted it is ' + arrayOfPets);
 
 function sumArray(numberArray) {
   var sum = 0;
   // TODO: implement me using forEach
+numberArray.forEach(function(number){
+  sum += number;
+})
   return sum;
 }
 
-// sumArray(arrayOfNumbers);
+sumArray(arrayOfNumbers1);
 
 
 
 function sumSort(arrayOfArrays) {
-  arrayOfArrays.sort(function(item) {
+  for (var i = 0; i < arrayOfArrays.length; i++) {
+    var orderVal = sumArray(arrayOfArrays[i]);
+    arrayOfArrays[i].unshift(orderVal);
+  }
     // TODO: implement me using sumArray
     //  order the arrays based on the sum of the numbers
     //  inside each array
-  });
+  // arrayOfArrays.forEach().shift();
+  arrayOfArrays.sort(function(a, b){return a-b});
+  return arrayOfArrays;
 }
+
+sumSort(arrayOfNumberArrays);
 
 //*********************************************************
 // PROBLEM 4: Cleanup: 10 points
