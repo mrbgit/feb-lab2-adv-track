@@ -215,11 +215,13 @@ assert((new Klingon()).sayHello(new Romulan()) === "Jolan\"tru", "the romulan sh
 
 var arrayOfPets = ['cat', 'dog', 'goldfish', 'python', 'gerbil', 'horse', 'tyrannosaurus rex', 'crocodile', 'monkey'];
 var arrayOfPetsInRightOrder = ['crocodile', 'horse', 'dog', 'goldfish', 'gerbil', 'python', 'cat', 'tyrannosaurus rex', 'monkey'];
-var arrayOfNumbers1 = [58,68,26,21,24,78,91,85,27,34,52,41,90,82,76,31,2,11,98,61];
-var arrayOfNumbers2 = [85,28,19,44,18,73,99,42,30,33,74,97,43,40,57,42,75,85,36,28];
-var arrayOfNumbers3 = [11,28,46,38,49,72,30,92,92,7,2,95,68,66,27,74,75,13,13,62];
-var arrayOfNumbers4 = [87,61,53,83,8,7,86,65,92,81,78,49,61,38,57,72,87,100,20,80];
-var arrayOfNumbers5 = [86,54,17,74,14,71,56,50,56,87,55,53,6,72,55,73,57,27,93,22];
+var arrayOfRandomWords = ['florella', 'precandidature', 'monopteros', 'frivolous', 'almohade', 'detruded', 'hematal', 'dominations', 'coadjutress', 'pluming'];
+var arrayOfRandomWordsInRightOrder = ['florella', 'detruded', 'almohade', 'precandidature', 'pluming', 'hematal', 'dominations', 'monopteros', 'coadjutress', 'frivolous'];
+var arrayOfNumbers1 = [58,68];
+var arrayOfNumbers2 = [85,28];
+var arrayOfNumbers3 = [11,28];
+var arrayOfNumbers4 = [87,61];
+var arrayOfNumbers5 = [86,54];
 
 var arrayOfNumberArrays = [arrayOfNumbers1, arrayOfNumbers2, arrayOfNumbers3, arrayOfNumbers4, arrayOfNumbers5];
 
@@ -236,11 +238,14 @@ function sortByLastLetter(stringArray) {
   return stringArray;
 }
 
-var arrayOfPets = sortByLastLetter(arrayOfPets);
+arrayOfPets = sortByLastLetter(arrayOfPets);
+arrayOfRandomWords = sortByLastLetter(arrayOfRandomWords);
 
-console.log('this is the array of pets ' + arrayOfPets);
+console.log('this is the array of pets after sorting by last letter ' + arrayOfPets);
+console.log('this is the array of random words after sorting by last letter ' + arrayOfRandomWords);
 
 assert(checkArrays(sortByLastLetter(arrayOfPets), arrayOfPetsInRightOrder), 'That\'s not the right order of pets!');
+assert(checkArrays(sortByLastLetter(arrayOfRandomWords), arrayOfRandomWordsInRightOrder), 'That\'s not the right order of random words!');
 
 function sumArray(numberArray) {
   var sum = 0;
@@ -252,18 +257,29 @@ numberArray.forEach(function(number){
 }
 
 function sumSort(arrayOfArrays) {
-  for (var i = 0; i < arrayOfArrays.length; i++) {
-    var orderVal = sumArray(arrayOfArrays[i]);
-    arrayOfArrays[i].unshift();
-  }
     // TODO: implement me using sumArray
     //  order the arrays based on the sum of the numbers
     //  inside each array
-  arrayOfArrays.sort();
+  for (var i = 0; i < arrayOfArrays.length; i++) {
+    var orderVal = sumArray(arrayOfArrays[i]);
+    arrayOfArrays[i].unshift(orderVal);
+  }
+  arrayOfArrays.sort(function (a,b){
+  if (a[0] < b[0]) return -1;
+  if (a[0] > b[0]) return 1;
+  return 0;
+  });
+  for (var i = 0; i < arrayOfArrays.length; i++) {
+    arrayOfArrays[i].shift();
+  }
   return arrayOfArrays;
 }
 
+console.log(arrayOfNumberArrays);
 sumSort(arrayOfNumberArrays);
+console.log(arrayOfNumberArrays);
+  console.log('this is the sorted array of number arrays ' + arrayOfNumberArrays);
+
 
 //*********************************************************
 // PROBLEM 4: Cleanup: 10 points
