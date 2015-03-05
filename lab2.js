@@ -33,6 +33,16 @@ function checkArrays(arrayOne, arrayTwo){
   }
 }
 
+function checkArrayOfNumberArrays(firstArray, secondArray){
+  for (var i = 0; i < firstArray.length; i++) {
+    if (firstArray[i] === secondArray[i]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
 //*********************************************************
 // PROBLEM 1: The Blob. 20 points
 //*********************************************************
@@ -222,8 +232,16 @@ var arrayOfNumbers2 = [85,28];
 var arrayOfNumbers3 = [11,28];
 var arrayOfNumbers4 = [87,61];
 var arrayOfNumbers5 = [86,54];
-
+var arrayOfNumbers6 = [62, 63];
+var arrayOfNumbers7 = [53, 69];
+var arrayOfNumbers8 = [7, 98];
+var arrayOfNumbers9 = [99, 29];
+var arrayOfNumbers10 = [51, 87];
 var arrayOfNumberArrays = [arrayOfNumbers1, arrayOfNumbers2, arrayOfNumbers3, arrayOfNumbers4, arrayOfNumbers5];
+var arrayOfNumberArrays2 = [arrayOfNumbers6, arrayOfNumbers7, arrayOfNumbers8, arrayOfNumbers9, arrayOfNumbers10];
+var arrayOfNumberArraysInRightOrder = [arrayOfNumbers3, arrayOfNumbers2, arrayOfNumbers1, arrayOfNumbers5, arrayOfNumbers4]
+
+var arrayOfNumberArrays2InRightOrder = [arrayOfNumbers8, arrayOfNumbers7, arrayOfNumbers6, arrayOfNumbers9, arrayOfNumbers10];
 
 function sortByLastLetter(stringArray) {
   var tempArray = [];
@@ -256,6 +274,9 @@ numberArray.forEach(function(number){
   return sum;
 }
 
+assert(sumArray(arrayOfNumbers1) === 126, '58 + 68  = 126...');
+assert(sumArray(arrayOfNumbers2) === 113, '85 + 28  = 113...');
+
 function sumSort(arrayOfArrays) {
     // TODO: implement me using sumArray
     //  order the arrays based on the sum of the numbers
@@ -264,10 +285,10 @@ function sumSort(arrayOfArrays) {
     var orderVal = sumArray(arrayOfArrays[i]);
     arrayOfArrays[i].unshift(orderVal);
   }
-  arrayOfArrays.sort(function (a,b){
-  if (a[0] < b[0]) return -1;
-  if (a[0] > b[0]) return 1;
-  return 0;
+  arrayOfArrays.sort(function (a, b){
+    if (a[0] < b[0]) return -1;
+    if (a[0] > b[0]) return 1;
+    return 0;
   });
   for (var i = 0; i < arrayOfArrays.length; i++) {
     arrayOfArrays[i].shift();
@@ -275,10 +296,10 @@ function sumSort(arrayOfArrays) {
   return arrayOfArrays;
 }
 
-console.log(arrayOfNumberArrays);
 sumSort(arrayOfNumberArrays);
-console.log(arrayOfNumberArrays);
-  console.log('this is the sorted array of number arrays ' + arrayOfNumberArrays);
+sumSort(arrayOfNumberArrays2);
+assert(checkArrayOfNumberArrays(sumSort(arrayOfNumberArrays), arrayOfNumberArraysInRightOrder), 'You need to reorder arrayOfNumberArrays')
+assert(checkArrayOfNumberArrays(sumSort(arrayOfNumberArrays2), arrayOfNumberArrays2InRightOrder), 'You need to reorder arrayOfNumberArrays2');
 
 
 //*********************************************************
