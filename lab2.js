@@ -15,7 +15,7 @@ To run this file (in the terminal) use: node lab2.js
 // SETUP
 //*********************************************************
 
-// We"re going to use this special assert method again to
+// We're going to use this special assert method again to
 // test our code
 function assert(expression, failureMessage) {
   if (!expression) {
@@ -99,7 +99,7 @@ hoursSpentInDowington = hoursToEatCity;
 // town, and the starting consumption rate, and returns the number
 // of hours the blob needs to ooze its way through that town.
 
-// TODO: implement me based on the instructions above. Be sure to then assign me to the Blob"s prototype.
+// TODO: implement me based on the instructions above. Be sure to then assign me to the Blob's prototype.
 
 function hoursToOoze(population, peoplePerHour) {
   var peopleEatenPerHour = 0;
@@ -144,17 +144,17 @@ var hello = {
 
 function SentientBeing () {
   // TODO: specify a home planet and a language
-  // you"ll need to add parameters to this constructor
+  // you'll need to add parameters to this constructor
   this.homePlanet = "Romulus";
   this.language = hello.romulan;
 }
 
 // sb is a SentientBeing object
 function sayHello (sb) {
-    // TODO: say hello prints out (console.log"s) hello in the
+    // TODO: say hello prints out (console.log's) hello in the
     // language of the speaker, but returns it in the language
     // of the listener (the sb parameter above).
-    // use the "hello" object at the beginning of this exercise
+    // use the 'hello' object at the beginning of this exercise
     // to do the translating
     switch (this.language) {
       case hello.klingon:
