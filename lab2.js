@@ -23,6 +23,16 @@ function assert(expression, failureMessage) {
   }
 }
 
+function checkArrays(arrayOne, arrayTwo){
+  arrayOneString = arrayOne.join('');
+  arrayTwoString = arrayTwo.join('');
+  if (arrayOneString === arrayTwoString) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 //*********************************************************
 // PROBLEM 1: The Blob. 20 points
 //*********************************************************
@@ -204,6 +214,7 @@ assert((new Klingon()).sayHello(new Romulan()) === "Jolan\"tru", "the romulan sh
 //*********6************************************************
 
 var arrayOfPets = ['cat', 'dog', 'goldfish', 'python', 'gerbil', 'horse', 'tyrannosaurus rex', 'crocodile', 'monkey'];
+var arrayOfPetsInRightOrder = ['crocodile', 'horse', 'dog', 'goldfish', 'gerbil', 'python', 'cat', 'tyrannosaurus rex', 'monkey'];
 var arrayOfNumbers1 = [58,68,26,21,24,78,91,85,27,34,52,41,90,82,76,31,2,11,98,61];
 var arrayOfNumbers2 = [85,28,19,44,18,73,99,42,30,33,74,97,43,40,57,42,75,85,36,28];
 var arrayOfNumbers3 = [11,28,46,38,49,72,30,92,92,7,2,95,68,66,27,74,75,13,13,62];
@@ -217,20 +228,19 @@ function sortByLastLetter(stringArray) {
   for (var i = 0; i < stringArray.length; i++) {
       tempArray.push(stringArray[i].split('').reverse('').join(''));
     }
-  console.log("this is the tempArray after reverse, but before sort " + tempArray);
   tempArray.sort();
-  console.log('this is the tempArray reversed and sorted ' + tempArray);
   stringArray = [];
   for (var i = 0; i < tempArray.length; i++) {
       stringArray.push(tempArray[i].split('').reverse('').join(''));
     }
-  console.log('this is the sorted stringArray ' + stringArray);
   return stringArray;
 }
 
-arrayOfPets = sortByLastLetter(arrayOfPets);
+var arrayOfPets = sortByLastLetter(arrayOfPets);
 
-console.log('when the pet array has been sorted it is ' + arrayOfPets);
+console.log('this is the array of pets ' + arrayOfPets);
+
+assert(checkArrays(sortByLastLetter(arrayOfPets), arrayOfPetsInRightOrder), 'That\'s not the right order of pets!');
 
 function sumArray(numberArray) {
   var sum = 0;
@@ -240,8 +250,6 @@ numberArray.forEach(function(number){
 })
   return sum;
 }
-
-sumArray(arrayOfNumbers1);
 
 function sumSort(arrayOfArrays) {
   for (var i = 0; i < arrayOfArrays.length; i++) {
